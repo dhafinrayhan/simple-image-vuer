@@ -40,19 +40,20 @@ export default {
     <p>{{ this.selectedImage.url }}</p>
   </div>
   <div class="images-list">
-    <button v-if="this.selectedIndex !== null" @click="decreaseIndex">left</button>
+    <button v-if="this.selectedIndex !== null" @click="decreaseIndex">&#8592;</button>
     <ul>
       <li v-for="(image, index) in images">
         <img :src="image.url" @click="this.selectedIndex = index" class="image-thumbnail"
           :class="{ 'image-thumbnail-selected': this.selectedIndex === index }">
       </li>
     </ul>
-    <button v-if="this.selectedIndex !== null" @click="increaseIndex">right</button>
+    <button v-if="this.selectedIndex !== null" @click="increaseIndex">&#8594;</button>
   </div>
 </template>
 
 <style>
 body {
+  font-family: sans-serif;
   background-color: #333;
   color: #eee;
 }
@@ -60,17 +61,18 @@ body {
 .image-view-group {
   height: 400px;
   text-align: center;
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
 }
 
 .image-view {
-  height: 320px;
+  height: 100%;
+  padding: 24px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-.image-close-button {
-  text-align: right;
 }
 
 .image-thumbnail {
@@ -86,11 +88,11 @@ body {
   width: 160px;
   height: 96px;
   object-fit: cover;
-  border: 4px solid green;
+  border: 4px solid cadetblue;
 }
 
 .image-thumbnail-selected {
-  border: 4px solid blue;
+  border: 4px solid royalblue;
 }
 
 .images-list {
@@ -102,6 +104,7 @@ body {
 }
 
 ul {
+  padding: 12px;
   list-style-type: none;
   display: inline-flex;
 }
@@ -110,4 +113,16 @@ li {
   margin-top: auto;
   margin-bottom: auto;
 }
+
+button {
+  background-color: royalblue;
+  font-size: 24px;
+  color: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+button:hover {
+  background-color: olive;
+}
+
 </style>
