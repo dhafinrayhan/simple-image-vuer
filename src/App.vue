@@ -48,6 +48,10 @@ export default {
 </template>
 
 <style>
+body {
+  background-color: #333;
+  color: #eee;
+}
 .image-view {
   height: 320px;
   display: block;
@@ -58,7 +62,9 @@ export default {
 .image-thumbnail {
   width: 144px;
   height: 80px;
+  margin: 2px;
   object-fit: cover;
+  border-radius: 12px;
 }
 
 .image-thumbnail-selected,
@@ -66,11 +72,16 @@ export default {
   width: 160px;
   height: 96px;
   object-fit: cover;
+  border: 4px solid green;
+}
+
+.image-thumbnail-selected {
   border: 4px solid blue;
 }
 
 ul {
   list-style-type: none;
+  text-align: center;
 }
 
 li {
