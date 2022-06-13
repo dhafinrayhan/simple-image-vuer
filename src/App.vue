@@ -34,17 +34,21 @@ export default {
 </script>
 
 <template>
-  <button v-if="this.selectedIndex !== null" @click="this.selectedIndex = null">X</button>
-  <img v-if="this.selectedIndex !== null" :src="this.selectedImage.url" class="image-view">
-  <p v-if="this.selectedIndex !== null">{{ this.selectedImage.url }}</p>
-  <button v-if="this.selectedIndex !== null" @click="decreaseIndex">left</button>
-  <button v-if="this.selectedIndex !== null" @click="increaseIndex">right</button>
-  <ul>
-    <li v-for="(image, index) in images">
-      <img :src="image.url" @click="this.selectedIndex = index" class="image-thumbnail"
-        :class="{ 'image-thumbnail-selected': this.selectedIndex === index }">
-    </li>
-  </ul>
+  <div v-if="this.selectedIndex !== null" class="image-view-group">
+    <button @click="this.selectedIndex = null">X</button>
+    <img :src="this.selectedImage.url" class="image-view">
+    <p>{{ this.selectedImage.url }}</p>
+  </div>
+  <div class="images-list">
+    <button v-if="this.selectedIndex !== null" @click="decreaseIndex">left</button>
+    <ul>
+      <li v-for="(image, index) in images">
+        <img :src="image.url" @click="this.selectedIndex = index" class="image-thumbnail"
+          :class="{ 'image-thumbnail-selected': this.selectedIndex === index }">
+      </li>
+    </ul>
+    <button v-if="this.selectedIndex !== null" @click="increaseIndex">right</button>
+  </div>
 </template>
 
 <style>
@@ -52,11 +56,21 @@ body {
   background-color: #333;
   color: #eee;
 }
+
+.image-view-group {
+  height: 400px;
+  text-align: center;
+}
+
 .image-view {
   height: 320px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.image-close-button {
+  text-align: right;
 }
 
 .image-thumbnail {
@@ -79,12 +93,21 @@ body {
   border: 4px solid blue;
 }
 
+.images-list {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 ul {
   list-style-type: none;
-  text-align: center;
+  display: inline-flex;
 }
 
 li {
-  float: left;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 </style>
