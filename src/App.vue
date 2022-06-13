@@ -13,6 +13,12 @@ export default {
     this.fetchData();
   },
 
+  computed: {
+    selectedImage() {
+      return this.images[this.selectedIndex];
+    }
+  },
+
   methods: {
     async fetchData() {
       this.images = await (await fetch(API_URL)).json();
@@ -29,8 +35,8 @@ export default {
 
 <template>
   <button v-if="this.selectedIndex !== null" @click="this.selectedIndex = null">X</button>
-  <img v-if="this.selectedIndex !== null" :src="this.images[selectedIndex].url" class="image-view">
-  <p v-if="this.selectedIndex !== null">{{ this.images[this.selectedIndex].url }}</p>
+  <img v-if="this.selectedIndex !== null" :src="this.selectedImage.url" class="image-view">
+  <p v-if="this.selectedIndex !== null">{{ this.selectedImage.url }}</p>
   <button v-if="this.selectedIndex !== null" @click="decreaseIndex">left</button>
   <button v-if="this.selectedIndex !== null" @click="increaseIndex">right</button>
   <ul>
