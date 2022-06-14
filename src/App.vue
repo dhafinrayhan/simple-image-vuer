@@ -23,10 +23,10 @@ export default {
     async fetchData() {
       this.images = await (await fetch(API_URL)).json();
     },
-    increaseIndex() {
+    incrementIndex() {
       if (this.selectedIndex < this.images.length - 1) this.selectedIndex++;
     },
-    decreaseIndex() {
+    decrementIndex() {
       if (this.selectedIndex > 0) this.selectedIndex--;
     }
   }
@@ -40,14 +40,14 @@ export default {
     <p>{{ this.selectedImage.url }}</p>
   </div>
   <div class="images-list">
-    <button v-if="this.selectedIndex !== null" @click="decreaseIndex">&#8592;</button>
+    <button v-if="this.selectedIndex !== null" @click="decrementIndex">&#8592;</button>
     <ul>
       <li v-for="(image, index) in images">
         <img :src="image.url" @click="this.selectedIndex = index" class="image-thumbnail"
           :class="{ 'image-thumbnail-selected': this.selectedIndex === index }">
       </li>
     </ul>
-    <button v-if="this.selectedIndex !== null" @click="increaseIndex">&#8594;</button>
+    <button v-if="this.selectedIndex !== null" @click="incrementIndex">&#8594;</button>
   </div>
 </template>
 
@@ -76,17 +76,18 @@ body {
 }
 
 .image-thumbnail {
-  width: 144px;
-  height: 80px;
+  width: 120px;
+  height: 72px;
   margin: 2px;
   object-fit: cover;
+  border: 2px solid #eee;
   border-radius: 12px;
 }
 
 .image-thumbnail-selected,
 .image-thumbnail:hover {
-  width: 160px;
-  height: 96px;
+  width: 144px;
+  height: 88px;
   object-fit: cover;
   border: 4px solid cadetblue;
 }
@@ -116,13 +117,14 @@ li {
 
 button {
   background-color: royalblue;
-  font-size: 24px;
+  font-size: 20px;
   color: white;
+  border: none;
   border: 2px solid #ddd;
   border-radius: 8px;
 }
+
 button:hover {
   background-color: olive;
 }
-
 </style>
