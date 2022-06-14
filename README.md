@@ -1,6 +1,6 @@
 # simple-image-vuer
 
-This template should help get you started developing with Vue 3 in Vite.
+Simple image viewer with Vue.
 
 ## Recommended IDE Setup
 
